@@ -15,7 +15,7 @@ Install `requests` using pip:
 ```
 $ pip install requests
 ```
-Using the requirements.txt:
+Or using the [requirements.txt](requirements.txt):
 ```
 $ pip install -r requirements.txt
 ````
@@ -44,14 +44,15 @@ Subd0mains_Finder.py  [options]  -a <your_api_key> <domain>
 Subd0mains_Finder.py  [options]  --api <your_api_key> <domain>
   
 Options:
--t --hosts			Show in hosts file format - 127.0.0.1	<subdomainsdomain>
+-t --hosts			Show in hosts file format, 127.0.0.1 <subdomain>
 -o --output <file_name>		Output to file
 -v --version			Show version
 -h --help			Show this screen
-```
 
-The api and the domain are always required.
-You can only enter one domain at a time, if you enter more than one domain it will use the first one.
+The api key and the domain are always required.
+You can only enter one domain at a time. Get yours API key at:
+  https://www.virustotal.com/gui/user/YOUR_USERNAME/apikey
+```
 
 ## Example
 
@@ -114,7 +115,7 @@ $ python Subd0mains_Finder.py --hosts --api <API_KEY> github.com
 127.0.0.1	tsvensen.github.com
 ```
 ## Relevant Information
-For info in the VirusTotal.com API go to:
+For info on the VirusTotal.com API go to:
 * https://developers.virustotal.com/reference
 * https://support.virustotal.com/hc/en-us/articles/115002100149-API
 
