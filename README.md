@@ -49,6 +49,79 @@ Options:
 -v --version			Show version
 -h --help			Show this screen
 ```
+
+The api and the domain are always required.
+You can only enter one domain at a time, if you enter more than one domain it will use the first one.
+
+## Example
+
+Example using -o to export to a file
+```
+$ python Subd0mains_Finder.py -o output.txt --api <API_KEY> google.com
+clients3.google.com
+mts1.google.com
+ampcid.google.com
+script.google.com
+docs.google.com
+surveys.google.com
+shopping.google.com
+plus.google.com
+passwords.google.com
+play.google.com
+.
+. (Some omitted for the example)
+.
+alt4-mtalk.google.com
+mail.google.com
+clients5.google.com
+actions.google.com
+dl-ssl.google.com
+inbox.google.com
+edu.google.com
+smartlock.google.com
+payments.google.com
+fcmatch.google.com
+
+Saved to file output.txt
+```
+
+Example using --hosts to print subdomains as hosts file format
+```
+$ python Subd0mains_Finder.py --hosts --api <API_KEY> github.com
+
+127.0.0.1	malsup.github.com
+127.0.0.1	ppareit.github.com
+127.0.0.1	central.github.com
+127.0.0.1	api.github.com
+127.0.0.1	help.github.com
+127.0.0.1	www.github.com
+127.0.0.1	yfujely.github.com
+127.0.0.1	codeload.github.com
+127.0.0.1	assets-cdn.github.com
+127.0.0.1	noraesae.github.com
+.
+. (Some omitted for the example)
+.
+127.0.0.1	used.github.com
+127.0.0.1	a-creative.github.com
+127.0.0.1	here.github.com
+127.0.0.1	2fraw.github.com
+127.0.0.1	twbs.github.com
+127.0.0.1	github.github.com
+127.0.0.1	visualstudio.github.com
+127.0.0.1	hawser.github.com
+127.0.0.1	almeida.github.com
+127.0.0.1	tsvensen.github.com
+```
+## Relevant Information
+For info in the VirusTotal.com API go to:
+* https://developers.virustotal.com/reference
+* https://support.virustotal.com/hc/en-us/articles/115002100149-API
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+As this script uses virustotal.com API you also must respect VirusTotal's [Terms of Service](https://support.virustotal.com/hc/en-us/articles/115002145529-Terms-of-Service) and [Privacy Policy](https://support.virustotal.com/hc/en-us/articles/115002168385-Privacy-Policy)
   
 ## Authors
 
