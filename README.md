@@ -36,12 +36,14 @@ $ python Subd0mains_Finder.py --help
 
 ## Usage
 
+Configure the API key in the [config.json](config.json) file.
+
+
 ```
 $ python Subd0mains_Finder.py --help
 
 Usage:
-Subd0mains_Finder.py  [options]  -a <your_api_key> <domain>
-Subd0mains_Finder.py  [options]  --api <your_api_key> <domain>
+Subd0mains_Finder.py  [options] <domain>
   
 Options:
 -t --hosts			Show in hosts file format, 127.0.0.1 <subdomain>
@@ -49,7 +51,7 @@ Options:
 -v --version			Show version
 -h --help			Show this screen
 
-The api key and the domain are always required.
+Put your API key in the config.json file.
 You can only enter one domain at a time. Get yours API key at:
   https://www.virustotal.com/gui/user/YOUR_USERNAME/apikey
 ```
@@ -58,7 +60,7 @@ You can only enter one domain at a time. Get yours API key at:
 
 Example using -o to export to a file
 ```
-$ python Subd0mains_Finder.py -o output.txt --api <API_KEY> google.com
+$ python Subd0mains_Finder.py -o output.txt google.com
 clients3.google.com
 mts1.google.com
 ampcid.google.com
@@ -88,7 +90,7 @@ Saved to file output.txt
 
 Example using --hosts to print subdomains as hosts file format
 ```
-$ python Subd0mains_Finder.py --hosts --api <API_KEY> github.com
+$ python Subd0mains_Finder.py --hosts github.com
 
 127.0.0.1	malsup.github.com
 127.0.0.1	ppareit.github.com
