@@ -1,15 +1,16 @@
 #!/usr/bin/python
-#Subd0mains_Finder v1.0 - by @moradorex
+#Subd0mains_Finder v2.0 - by @moradorex
 #Python Subdomain searcher based of virustotal.com API
 
 import requests
 import sys
 import getopt
+import json
 
 #DATA
 domain = ''
 api = ''
-version = '1.0'
+version = '2.0'
 
 #OPTIONS
 recursive = False
@@ -19,14 +20,13 @@ output = False
 
 def usage():
 	print("usage:")
-	print("  Subd0mains_Finder.py [options] -a <your_api_key> <domain>")
-	print("  Subd0mains_Finder.py [options] --api <your_api_key> <domain>")
+	print("  Subd0mains_Finder.py [options] <domain>")
 	print("\n  options:")
 	print("    -t, --hosts \t\tShow in hosts file format, 127.0.0.1 <subdomain>")
 	print("    -o <file>, --output <file> \tSave to file")
 	print("    -v, --version \t\tShow version")
 	print("    -h, --help \t\t\tShow this screen")
-	print("\nThe api key and the domain are always required.")
+	print("\nPut your API key in the config.json file.")
 	print("You can only enter one domain at a time. Get yours API key at:")
 	print("  https://www.virustotal.com/gui/user/YOUR_USERNAME/apikey\n")
 	sys.exit(2)
@@ -57,9 +57,22 @@ def main():
 	#OPTIONS
 	global recursive, hosts, output
 
+	#GET API FROM CONFIG FILE
+	#READ FILE
+	Fconfig = open('config.json', 'r')
+	data=Fconfig.read()
 
+	#PARSE FILE
+	obj = json.loads(data)
+	api = str(obj['api'])
+
+	if(api=="API_KEY" or api==""):
+		print("\nAPI NOT FOUND")
+		usage()
+
+	#OPTIONS AND ARGUMENTS
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], 'td:a:o:vh', ['hosts', 'domain=', 'api=', 'output=', 'version', 'help'])
+		opts, args = getopt.getopt(sys.argv[1:], 'td:o:vh', ['hosts', 'domain=', 'output=', 'version', 'help'])
 	except getopt.GetoptError:
 		usage()
 
@@ -67,9 +80,6 @@ def main():
 	for opt, arg in opts:
 		if opt in ('-t', '--hosts'):
 			hosts = True
-
-		elif opt in ('-a', '--api'):
-			api = arg
 
 		elif opt in ('-o', '--output'):
 			output = arg
