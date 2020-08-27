@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#Subd0mains_Finder v2.0 - by @moradorex
+#Subd0mains_Finder v2.1 - by @moradorex
 #Python Subdomain searcher based of virustotal.com API
 
 import requests
@@ -10,7 +10,7 @@ import json
 #DATA
 domain = ''
 api = ''
-version = '2.0'
+version = '2.1'
 
 #OPTIONS
 recursive = False
@@ -34,7 +34,8 @@ def usage():
 
 def getVirusTotal():
 	params = {'apikey':api,'domain':domain}
-	response = requests.get('https://www.virustotal.com/vtapi/v2/domain/report', params=params)
+	headers = {'User-Agent': 'Subd0mains_Finder/2.1'}
+	response = requests.get('https://www.virustotal.com/vtapi/v2/domain/report', headers=headers, params=params)
 
 	if(response.status_code == 400):
 		print("Bad request. Your request was somehow incorrect. This can be caused by missing arguments or arguments with wrong values.")
@@ -44,6 +45,9 @@ def getVirusTotal():
 		sys.exit(2)
 	elif(response.status_code == 201):
 		print("Request rate limit exceeded. You are making more requests than allowed. You have exceeded one of your quotas (minute, daily or monthly). Daily quotas are reset every day at 00:00 UTC.")
+		sys.exit(2)
+	elif(response.json()['response_code']==0):
+		print("Domain not found")
 		sys.exit(2)
 
 	return response.json()
@@ -113,11 +117,11 @@ def main():
 	for subdomain in req['subdomains']:
 		if(hosts):
 			if(output != False):
-				file.write("127.0.0.1\t" + subdomain + "\n")
-				print("127.0.0.1\t" + subdomain)
+				file.write("127.0.0.1 " + subdomain + "\n")
+				print("127.0.0.1 " + subdomain)
 
 			else:
-				print("127.0.0.1\t" + subdomain)
+				print("127.0.0.1 " + subdomain)
 
 		else:
 			if(output != False):
